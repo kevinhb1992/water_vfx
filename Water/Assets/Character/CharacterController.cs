@@ -14,29 +14,13 @@ public class CharacterController : MonoBehaviour
     [SerializeField] Animator _Anim;
 
     [SerializeField] WaterBallControll waterBallController;
-    [SerializeField] WaterBender waterBenderController;
-    [SerializeField] WaterTubeController waterTubeController;
     [SerializeField] float _TurnSpeed;
     Vector3 waterBallTarget;
     Vector3 waterBendTarget;
     Vector3 waterTubeTarget;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StopAllCoroutines();
-            StartCoroutine(Coroutine_WaterBall());
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StopAllCoroutines();
-            StartCoroutine(Coroutine_WaterBend());
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StopAllCoroutines();
-            StartCoroutine(Coroutine_WaterTube());
-        }
+        StartCoroutine(Coroutine_WaterBall());
     }
 
     IEnumerator Coroutine_WaterBall()
@@ -101,11 +85,6 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void AnimationCallback_WaterBend()
-    {
-        waterBenderController.Attack(waterBendTarget);
-    }
-
     IEnumerator Coroutine_WaterTube()
     {
         while (true)
@@ -125,10 +104,6 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void AnimationCallback_WaterTube()
-    {
-        waterTubeController.InstantiateWaterTube(waterTubeTarget);
-    }
 
     IEnumerator Coroutine_Turn()
     {
