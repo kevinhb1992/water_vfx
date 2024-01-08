@@ -16,10 +16,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] WaterBallControll waterBallController;
     [SerializeField] float _TurnSpeed;
     Vector3 waterBallTarget;
-    Vector3 waterBendTarget;
-    Vector3 waterTubeTarget;
+   
     private void Update()
     {
+        //KEVIN: You can give a condition when to start 'waterball'
         StartCoroutine(Coroutine_WaterBall());
     }
 
@@ -65,45 +65,6 @@ public class CharacterController : MonoBehaviour
             waterBallController.ThrowWaterBall(waterBallTarget);
         }
     }
-
-    IEnumerator Coroutine_WaterBend()
-    {
-        while (true)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                yield return StartCoroutine(Coroutine_Turn());
-                if (Physics.Raycast(ray, out hit))
-                {
-                    waterBendTarget = hit.point;
-                    _Anim.SetTrigger("WaterBend");
-                }
-            }
-            yield return null;
-        }
-    }
-
-    IEnumerator Coroutine_WaterTube()
-    {
-        while (true)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                yield return StartCoroutine(Coroutine_Turn());
-                if (Physics.Raycast(ray, out hit))
-                {
-                    waterTubeTarget = hit.point;
-                    _Anim.SetTrigger("WaterTube");
-                }
-            }
-            yield return null;
-        }
-    }
-
 
     IEnumerator Coroutine_Turn()
     {
