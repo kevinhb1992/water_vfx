@@ -9,7 +9,7 @@ public class WaterBall : MonoBehaviour
     [SerializeField] float _Speed;
     [SerializeField] ParticleSystem _SplashPrefab;
     [SerializeField] ParticleSystem _SpillPrefab;
-    public void Throw(Vector3 target)
+    public void Break(Vector3 target)
     {
         StopAllCoroutines();
         StartCoroutine(Coroutine_Throw(target));
